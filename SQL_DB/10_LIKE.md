@@ -1,4 +1,4 @@
-# **LIKE\***
+# **LIKE**
 
 특정 집합(컬럼 혹은 리스트)에서 어떠한 컬럼의 값이 특정 값과 유사한 패턴을 갖는 집합을 출력하는 연산자
 
@@ -6,7 +6,6 @@
 select * fromt table_name
 where column_name
 like 특정패턴
-
 ```
 
 특정 패턴과 유사한 값을 조회
