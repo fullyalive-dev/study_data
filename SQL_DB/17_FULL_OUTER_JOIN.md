@@ -2,12 +2,16 @@
 
 INNER, LEFT OUTER, RIGHT OUTER 조인 집합을 모두 출력하는 조인 방식. 즉 두 테이블간 출력가능한 모든 데이터를 포함한 집합을 출력
 
-![](./images/17_02.png)
+![](./images/17_02.png) 
+
+__출처 : https://coalnam.tistory.com/2__
+
+---
 
 #### A와 B의 테이블을 FRUIT 컬럼 기준으로 FULL OUTER JOIN
 ![](./images/17_05.png)
 
--> 7번째 집합
+-> [Inclusive] Full Join(A v B)
 
 ```
 SELECT
@@ -30,7 +34,7 @@ ON  A.FRUIT = B.FRUIT;
 #### A와 B의 테이블을 FRUIT 컬럼 기준으로 FULL OUTER 조인, A.ID가 NULL 혹은 B.ID가 NULL인 값을 조회
 ![](./images/17_05.png)
 
--> 3번째 집합
+-> [Exclusive] Full Join(A + B)
 ```
 SELECT
 	A.ID ID_A,
@@ -110,7 +114,7 @@ commit;
 
 ![](./images/17_05.png)
 
--> 7번째 집합
+-> [Inclusive] Full Join (A v B)
 
 ```
 SELECT
@@ -133,9 +137,9 @@ ON  D.DEPARTMENT_ID = E.DEPARTMENT_ID;
 
 ![](./images/17_05.png)
 
--> 2번째 집합
+-> [Exclusive] Right Join (~A)
 ```
--- FULL OUTER JOIN을 사용하는 방법
+-- FULL OUTER JOIN
 
 SELECT
 	E.EMPLOYEE_NAME,
@@ -145,11 +149,10 @@ FROM
 FULL OUTER JOIN DEPARTMENTS D ON
 	D.DEPARTMENT_ID = E.DEPARTMENT_ID
 WHERE E.EMPLOYEE_NAME IS NULL;
+```
 
-
-######################################
-
--- RIGHT JOIN을 사용하는 방법
+```
+-- RIGHT ONLY
 
 SELECT
 	E.EMPLOYEE_NAME,
@@ -164,3 +167,38 @@ WHERE E.EMPLOYEE_NAME IS NULL;
 조회되는 결과는 동일
 
 ![](./images/17_06.png)
+
+#### EMPLOYEES 테이블과 DEPARTMENTS 테이블을 FULL OUTER 조인(소속한 부서가 없는 직원만 출력)
+
+![](./images/17_05.png)
+
+-> [Exclusive] Left Join (~B)
+
+```
+-- FULL OUTER JOIN
+SELECT
+	E.EMPLOYEE_NAME,
+	D.DEPARTMENT_NAME
+FROM
+	EMPLOYEES E
+FULL OUTER JOIN 
+	DEPARTMENTS D
+ON	D.DEPARTMENT_ID = E.DEPARTMENT_ID
+WHERE D.DEPARTMENT_ID IS NULL;
+```
+```
+-- LEFT ONLY
+
+SELECT
+	E.EMPLOYEE_NAME,
+	D.DEPARTMENT_NAME
+FROM
+	EMPLOYEES E
+LEFT JOIN DEPARTMENTS D 
+ON  D.DEPARTMENT_ID = E.DEPARTMENT_ID
+WHERE D.DEPARTMENT_ID IS NULL;
+```
+조회되는 결과는 동일
+
+![](./images/17_07.png)
+

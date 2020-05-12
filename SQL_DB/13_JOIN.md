@@ -13,6 +13,8 @@
 | CROSS 조인      | Cartesian Product이라고도 하며 조인되는 두 테이블에서 곱집합을 반환                                                      |
 | NATURAL 조인    | 특정 테이블의 같은 이름을 가진 컬럼간의 조인집합을 출력                                                                  |
 
+---
+
 #### BASKET_A 테이블 생성
 ```
 CREATE TABLE BASKET_A
